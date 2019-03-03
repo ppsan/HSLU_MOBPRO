@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">UI-Demo</string>
+    <string name="main_title">HaSLu - XML-Müsle</string>
+    <string name="main_welcomeText">Salü zum zweite Kursblock</string>
+    <string name="main_section1">1. Layout</string>
+    <string name="main_layoutDemoText">Nimm eis vo dene:</string>
+    <string name="main_radioLinear">LinearLayout</string>
+    <string name="main_radioRelative">RelativeLayout</string>
+    <string name="main_section2">2. Screen-Orientation und Übersetzung</string>
+    <string name="main_configDemoText">Diese Seite hat ein angepasstes Layout für Landscape Mode. Probier es aus! Ausserdem kann sie auch Schweizerdeutsch: Stelle die Sprache im Emulator auf Deutsch (Schweiz) um, und starte die App erneut.</string>
+    <string name="main_section3">3. Views und Events</string>
+    <string name="main_viewDemoText">Seite mit Views-Demo anzeigen</string>
+    <string name="main_section4">4. Options-Menu</string>
+    <string name="main_MenuInfoText">Diese Seite hat ein Options Menu. Klicke auf den Menu-Button, um das Menu anzuzeigen.</string>
+    <string name="main_section5">5. Spinner und ListActivity</string>
+    <string name="main_spinnerPrompt">Wähle eine Informatik-Kurs</string>
+    <string name="main_openListView">Kurs mit Activity wählen</string>
+    <string name="main_section6">6. Zustands-Zwischenspeicherung</string>
+    <string name="main_section6intro">Drücke den Knopf einige Male. Ein Toast mit dem internen Zählerstand wird angezeigt. Drehe das Device von Portrait in den Landscape Mode. Der Zähler wird zurückgesetzt. Das darf nicht sein...</string>
+    <string name="main_increaseCounter">Internen Zustand hochzählen</string>
+    <string name="main_section7">7. Dialoge und Notifications</string>
+    <string name="main_feedbackSpinnerPrompt">Wähle ein Beispiel</string>
+</resources>
