@@ -152,9 +152,10 @@
                 android:text="@string/main_spinnerPrompt" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/moduleSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:entries="@array/modules" />
 
             <Button
                 android:id="@+id/button2"
@@ -184,7 +185,18 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/main_increaseCounter" />
+                android:text="@string/main_increaseCounter"
+                android:onClick="increaseInternalCounter"/>
+
+            <TextView
+                android:id="@+id/main_counterLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="0" />
 
             <TextView
                 android:id="@+id/textView14"

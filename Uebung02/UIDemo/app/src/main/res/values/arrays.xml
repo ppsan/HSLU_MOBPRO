@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modules">
+        <item></item>
+        <item>Ethischer Solipsismus (ESO)</item>
+        <item>Code Obfuscation (CO1)</item>
+        <item>Code Obfuscation for Enterprise Applications (CO2)</item>
+        <item>Österreichisch A1 Grundkurs (GAT)</item>
+        <item>Haptische Kallistik (HAK)</item>
+        <item>Physiognomie im digitalen Zeitalter (PHD)</item>
+        <item>Kredenzen bis in die Puppen(KPUP)</item>
+        <item>Effizienzsteigerung durch semantische Redundanzreduktion (ESR)</item>
+        <item>Homerische Zoologie (HOZ)</item>
+        <item>Affektheuristische Stochastik (AFF)</item>
+        <item>Sprachpurismus und forcierte Verdeutschung (SPV)</item>
+        <item>Kryptobotanik (KRYBO)</item>
+    </string-array>
+</resources>
