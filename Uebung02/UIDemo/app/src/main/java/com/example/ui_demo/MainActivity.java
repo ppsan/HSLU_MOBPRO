@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 2.6 Counter
     public void updateCounterLabel () {
-        counterLabel.setText("Counter: " + viewModel.getCounter());
+        counterLabel.setText("Counter: " + viewModel.getCounter() % 11);
     }
 
     // called on button click (see main.xml)
