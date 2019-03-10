@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Persistenz</string>
+    <string name="app_title">Persistenz</string>
+    <string name="title">HSLU Mobile Programming</string>
+    <string name="section_1">Application Prefereces</string>
+    <string name="onresume_text">ERROR - COULD NOT LOAD TEXT.</string>
+    <string name="tee_pref_text">Ich trinke am liebsten Lipton/Pfefferminztee ungesüsst.</string>
+    <string name="tee_pref_edit_button">Tee-Prefences editieren</string>
+    <string name="tee_default_prefs">Tee Default-Prefs setzen</string>
+    <string name="section_2">Dateisystem</string>
+    <string name="check_external">Externen Speicher benutzen</string>
+    <string name="mounted">External Storage ist mounted (writable)</string>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="teaSweetenerValues">
+        <item>natural</item>
+        <item>one_artificial</item>
+        <item>industrial</item>
+        <item>super_natural</item>
+        <item>super_duper_natural</item>
+    </string-array>
+
+    <string-array name="teaSweetener">
+        <item>Rohrzucker</item>
+        <item>Assugrin</item>
+        <item>Zucker</item>
+        <item>Honig</item>
+        <item>Rossäpfel</item>
+    </string-array>
+
+</resources>
