@@ -4,10 +4,15 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Environment;
+import android.os.ParcelUuid;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -25,6 +30,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private final String FILE_NAME = "myTextFile.txt";
+    private long notes = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             }
             if (linesArray.size()>0) {
                 editText.setText(linesArray.get(0));
-                Toast.makeText(this, "Aus lokalen Speicher gelesen", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Aus lokalem Speicher gelesen", Toast.LENGTH_SHORT).show();
                 TextView statusText = (TextView) findViewById(R.id.status);
                 statusText.setText("Aus lokalem Speicher gelesen");
             } else {
@@ -172,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         String text = editText.getText().toString();
         try {
             File sdCard = Environment.getExternalStorageDirectory();
-            File directory = new File(sdCard.getAbsolutePath() + "/ordner");
+            File directory = new File(sdCard.getAbsolutePath() + "/folder");
             directory.mkdir();
             File file = new File(directory, FILE_NAME);
             FileOutputStream outputStream = new FileOutputStream(file);
@@ -193,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         if (grant == PackageManager.PERMISSION_GRANTED) {
             try {
                 File sdCard = Environment.getExternalStorageDirectory();
-                File directory = new File(sdCard.getAbsolutePath() + "/ordner");
+                File directory = new File(sdCard.getAbsolutePath() + "/folder");
                 directory.mkdir();
                 File file = new File(directory, FILE_NAME);
                 FileInputStream fileInputStream = new FileInputStream(file);
@@ -248,7 +254,53 @@ public class MainActivity extends AppCompatActivity {
                     writeExternal();
                 }
                 break;
-            }
+        }
+    }
+
+    public void editNote(View v) {
+        Intent intent = new Intent(this, NoteActivity.class);
+        long noteId = -1;
+        Log.i("noteAcitvity.noteId", String.valueOf(noteId));
+        intent.putExtra("noteId", noteId);
+
+        startActivity(intent);
+    }
+
+    public void showNote(View v) {
+        Intent intent = new Intent(this, NoteActivity.class);
+        long noteId = 1;
+        Log.i("noteAcitvity.noteId", String.valueOf(noteId));
+        intent.putExtra("noteId", noteId);
+        startActivity(intent);
+    }
+
+    public void gibNotes(View v) {
+        Intent intent = new Intent(this, NoteListActivity.class);
+        startActivity(intent);
+    }
+
+    public void showSms(View v) {
+
+        int grant = checkSelfPermission(Manifest.permission.READ_SMS);
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] { Manifest.permission.READ_SMS }, 25);
+        } else {
+            final Cursor cursor = getContentResolver().query(
+                    Telephony.Sms.Inbox.CONTENT_URI,
+                    new String[] { Telephony.Sms.Inbox._ID, Telephony.Sms.Inbox.BODY },
+                    null, null, null);
+
+            new AlertDialog.Builder(this)
+                    .setTitle("SMS in Inbox")
+                    .setCursor(cursor, null, Telephony.Sms.Inbox.BODY)
+                    .setNeutralButton("OK", null)
+                    .create()
+                    .show();
         }
 
     }
+
+
+
+
+}
