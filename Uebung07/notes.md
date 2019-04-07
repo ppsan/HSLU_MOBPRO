@@ -17,7 +17,7 @@ ionic serve
 ```
 
 
-## 1. Ionic-Projekt "MovieApp" aufsetzen
+## 1. Ionic-Projekt "MovieApp" aufsetzen
 
 App erstellen mit Cordova Integration:
 
