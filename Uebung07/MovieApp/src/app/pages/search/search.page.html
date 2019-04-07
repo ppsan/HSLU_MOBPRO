@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Movie Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Search</h3>
+  <p>Enter the movie title to search below and press the enter key or the search button.</p>
+  <ion-input placeholder="shrek" [(ngModel)]="searchQuery"></ion-input>
+  <ion-button color="secondary" (click)="doSearch()">Search</ion-button>
+</ion-content>

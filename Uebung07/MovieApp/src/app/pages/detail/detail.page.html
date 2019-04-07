@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Movie Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>{{movie.Title}}</h1>
+
+<p><b>{{movie.Director}}</b></p>
+
+<p><b>{{movie.Country}}, {{movie.Year}}</b></p>
+
+<p>{{movie.Plot}}</p>
+<img src="{{movie.Poster}}" width="300"/>
+</ion-content>
