@@ -59,7 +59,6 @@ Datei `src/app/home/home.page.html` anpassen:
 Neue Seiten erstellen für Search und Detail:
 
 ```
-# Teilaufgabe 2
 ionic generate page pages/search
 ionic generate page pages/detail
 ```
