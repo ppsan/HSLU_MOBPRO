@@ -418,3 +418,27 @@ App auf dem Emulator laufen lassen:
 ```
 ionic cordova run android --emulator
 ```
+
+## 7. [OPTIONAL] Native APIs benutzten mit Cordova
+
+Cordova Plugins für Battery-Status installieren:
+
+```
+ionic cordova plugin add cordova-plugin-battery-status
+npm install @ionic-native/battery-status
+```
+
+Cordova Plugin für Network:
+
+```
+ionic cordova plugin add cordova-plugin-network-information
+npm install @ionic-native/network
+```
+
+Neue Page `native` erstellen:
+
+```
+ionic generate page pages/native
+```
+
+

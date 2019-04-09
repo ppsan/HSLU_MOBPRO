@@ -33,7 +33,7 @@ export class SearchPage implements OnInit {
         this.navCtl.navigateForward('detail');
       } else {
         //this.presentAlert(movie.Error)
-        //alert(movie.Error)
+        alert(movie.Error)
       }
     })
   }

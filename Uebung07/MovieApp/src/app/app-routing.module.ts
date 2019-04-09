@@ -22,7 +22,8 @@ const routes: Routes = [
   {
      path: 'detail',
      loadChildren: './pages/detail/detail.module#DetailPageModule'
-  }
+  },
+  { path: 'native', loadChildren: './pages/native/native.module#NativePageModule' }
 ];
 
 @NgModule({

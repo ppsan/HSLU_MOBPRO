@@ -9,17 +9,11 @@ import { MovieDetailService } from 'src/app/services/MovieDetailService';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-
-
+  
   movie : Movie
 
   constructor(private actRoute: ActivatedRoute, private mds : MovieDetailService) { 
-
     this.movie = mds.getMovie();
-
   }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
