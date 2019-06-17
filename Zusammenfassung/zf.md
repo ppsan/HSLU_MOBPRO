@@ -62,9 +62,8 @@ startActivity(browserCall)
 
 Das System verwaltet den Lebenszyklus von Komponenten:
 
-* _started_
+* _running_
 * _paused_
-* _active_
 * _stopped_
 
 Es gibt vier Typen von Android Komponenten:
@@ -175,7 +174,7 @@ Das System regelt den Lebenszylus von Applikationen und kann diese selbständig 
 ```xml
 <TextView
   ...
-  android:background="@color/sectionBackground“
+  android:background="@color/sectionBackground"
   android:textColor="@color/sectionText"
   android:text="@string/main_section1"
 />
@@ -183,20 +182,13 @@ Das System regelt den Lebenszylus von Applikationen und kann diese selbständig 
 
 # Das Android Betriebssystem
 
+## Andoid Stack
+
 - **Linux Kernel**: Drivers (USB, WiFi, Audio, Display), Power Management
 - **Hardware Abstraction Layer (HAL)**: Audio, Bluetooth, Camera, Sensors
 - **Native C/C++ Libraries** && **Android Runtime (ART)**
 - **Java API Frameworks**: Content Providers, Activity, Notification
 - **System Apps**: Calendar, Camera, Email
-
-## Andoid Stack
-
-1. *Linux Kernel*: OS, FS, Drivers
-2. *HAL (Hardware Abstraction Layer)*: Abstraktion von Kamera, Sensoren, ...
-3. *Native Libraries (C/C++)*
-4. *ART (Android Runtime)*
-5. *Android Framework*: Android Java API
-6. *Applications*
 
 ![Android Stack](./img/stack.png)
 
@@ -232,7 +224,7 @@ Damit ein GUI-Element im Code verwendet werden kann, muss im Layout eine ID defi
 />
 ```
 
-Das Element kann dann über die ID gefunden werden:
+Das Element kann dann über die ID angesprochen werden:
 
 ```java
 TextView label = (TextView) findViewById(R.id.section_text);
@@ -255,7 +247,7 @@ Das Linear Layout ist einfacher zu handhaben und robuster als das Constraint Lay
 
 _ViewGroup_, die vertikales Scrolling erlaubt. Eine ScrollView kann nur ein Element enthalten, beispielsweise eine ListView.
 
-### Adapter View
+### AdapterView
 
 _Adapter_ sind Verbindung zwischen Datenquelle und GUI. Erzeugt pro Datenelement ein View-Element.
 
@@ -299,7 +291,7 @@ button.setOnClickListener(new OnClickListener() {
 });
 ```
 
-Alternativ können onClick-Event Listener auch im XML registriert werden:
+Alternativ können `onClick`-Event Listener auch im XML registriert werden:
 
 ```xml
 <Button
@@ -307,7 +299,7 @@ Alternativ können onClick-Event Listener auch im XML registriert werden:
   android:onClick="doStuff"
 ```
 
-Die Signatur der im XML definierten Funktion ist Vorgegeben:
+Die Signatur der im XML definierten Funktion ist vorgegeben:
 
 ```java
 public void name(View v)
@@ -406,7 +398,7 @@ final SharedPreferences pref = getPreferences(MODE_PRIVATE);
 // Lesen
 final int newCount = preferences.getInt(COUNTER_KEY, 0) + 1;
 // Schreiben
-final SharedPreferences.Editor editr = preferences.edit();
+final SharedPreferences.Editor editor = preferences.edit();
 editor.putInt(COUNTER_KEY, newCount);
 editor.apply();
 ```
@@ -425,7 +417,7 @@ Jede App verfügt über ein eigenes Applikationsverzeichnis, auf das von anderen
 
 ```java
 // private
-Context.getFIlesDir()
+Context.getFilesDir()
 // public
 Environment.getExternalStorageDirectory()
 Environment.getExternalStorageState();
@@ -505,7 +497,7 @@ public interface UserDao {
 }
 ```
 
-# Content Providers
+# Content Providers
 
 Stellen Daten für andere Applikationen bereit, Zugriff erfolgt über URI. Zum Beispiel:
 
@@ -535,7 +527,7 @@ Context.getContentResolver()
 
 Eine Android Applikation läuft standardmässig in einem einzigen Thread, dem _main_-Thread. In diesem wird das ganze UI aufgebaut. Wenn der main-Thread blockiert ist, friert das UI ein.
 
-Da Netzwerkmethoden, Datenbankzugriffe und andere Aktionen lange dauern können, sollten diese nicht auf dem main-Thread verwendet werden, da sonst sonst das UI blockiert wird.
+Weil Netzwerkmethoden, Datenbankzugriffe und andere Aktionen lange dauern können, sollten diese nicht auf dem main-Thread verwendet werden, da sonst sonst das UI blockiert wird.
 
 Aus diesem Grund sind gewisse Operationen wie beispielsweise Netzwerkzugriffe auf dem main-Thread nicht erlaubt und führen zu einer Exception.
 
@@ -543,15 +535,15 @@ Aus diesem Grund sind gewisse Operationen wie beispielsweise Netzwerkzugriffe au
 
 Das Android System überwacht die Responsivness von Apps. Falls innerhalb von 5 Sekunden keine Reaktion auf einen Input-Event erfolgt, kann ein ANR-Dialog (ANR = _Application Not Responding_) zum Schliessen der App eingeblendet werden.
 
-## Nebenläufigkeit mit `AsynchTask`
+## Nebenläufigkeit mit `AsyncTask`
 
-Eine Klasse, die von `AsynchTask` erbt kann mit `AsyncTask.doInBackground()` gewisse Sachen auf einen Worker-Thread ausführen.
+Eine Klasse, die von `AsyncTask` erbt kann mit `AsyncTask.doInBackground()` gewisse Sachen auf einen Worker-Thread ausführen.
 
 Je nach Implementation sind das einer oder mehrere Worker-Tasks.
 Andere Methoden (z.B. `AsynchTask.onProgressExecute()`) laufen auf dem main-Thread.
 
 ```java
-class MyAsyncTask extends AsynchTask<Params, Progress, Result> {
+class MyAsyncTask extends AsyncTask<Params, Progress, Result> {
   protected Result doInBackground(Params... params)
   protected void onProgressUpdate(Progress... progress)
   protected void onPostExecute(Result result)
@@ -609,7 +601,7 @@ Benötigt Permission `FOREGROUND_SERVICE`.
 public class DemoMusicPlayerSerivce extends Service {
   
   @Override
-  public int onStartCOmmand(Intent intent, int flags, int startId) {
+  public int onStartCommand(Intent intent, int flags, int startId) {
     startPlayer();
     return Service.START_NOT_STICKY; // in main thread
   }
@@ -661,6 +653,22 @@ public static class ExampleFragment extends Fragment {
   }
 }
 ```
+
+## Lebenszyklus Fragment
+
+* `onAttach()`
+* `onCreate()`
+* *`onCreateView()`*
+* `onActivityCreated()`
+* `onStart()`
+* `onResume()`
+* **Fragment is active**
+* `onPause()`
+* `onStop()`
+* `onDestroyView()`
+* `onDestroy()`
+* `onDetach()`
+* **Fragment is destroyed**
 
 # App-Widgets
 
