@@ -17,7 +17,7 @@ ionic serve
 ```
 
 
-## 1. Ionic-Projekt "MovieApp" aufsetzen
+## 1. Ionic-Projekt "MovieApp" aufsetzen
 
 App erstellen mit Cordova Integration:
 
@@ -59,7 +59,6 @@ Datei `src/app/home/home.page.html` anpassen:
 Neue Seiten erstellen für Search und Detail:
 
 ```
-# Teilaufgabe 2
 ionic generate page pages/search
 ionic generate page pages/detail
 ```
@@ -418,6 +417,7 @@ App auf dem Emulator laufen lassen:
 ```
 ionic cordova run android --emulator
 ```
+<<<<<<< HEAD
 
 ## 7. [OPTIONAL] Native APIs benutzten mit Cordova
 
@@ -442,3 +442,5 @@ ionic generate page pages/native
 ```
 
 
+=======
+>>>>>>> 7462a19fbf1faf92fa3129023a84e5c79aec1c55

@@ -10,7 +10,7 @@ Zusammenfassung für das Modul MOBPRO an der HSLU (FS19).
 
 ## Warum Android
 
-![Android Stack](./img/stack.png)
+![Android Logo](./img/logo.png)
 
 * Android ist die meistgenutze mobile Plattform (~87%)
 * Kompletter Stack: OS, Middleware, Applikationen
@@ -20,9 +20,9 @@ Zusammenfassung für das Modul MOBPRO an der HSLU (FS19).
 
 ## Komponenten
 
-Android *Applikationen* sind zusammengesetzt aus lose gekoppelten Komponenten. Dies können eigene Komponenten oder Komponenten von anderen Applikationen sein.
+Android Applikationen sind zusammengesetzt aus lose gekoppelten Komponenten. Dies können eigene oder Komponenten von anderen Applikationen sein.
 
-Die Android *Runtime* verwaltet die Applikationen, bzw. einzelnen Komponenten einer Applikation.
+Die *Android Runtime* verwaltet die Applikationen, bzw. einzelnen Komponenten einer Applikation.
 
 Mit dem *Intent*-Mechanismus kann eine Komponente eine andere aufrufen. Dies kann auf zwei Arten geschehen:
 
@@ -33,7 +33,7 @@ Beispiel expliziter Intent:
 
 ```java
 // Sender Activity
-public void onClicSendBtn(final View btn) {
+public void onClickSendBtn(final View btn) {
   // explicit receiver
   Intent intent = new Intent(this, Receiver.class);
   intent.putExtra("msg", "Hello World");
@@ -60,14 +60,12 @@ browserCall.setData(Uri.parse("https://hslu.ch");
 startActivity(browserCall)
 ```
 
-* System verwaltet den Lebenszyklus von Komponenten (_started_, _paused_, _active_, _stopped_, etc.)
+Das System verwaltet den Lebenszyklus von Komponenten:
 
-Alle Komponenten einer Applikation müssen dem System bekannt gegeben werden, indem sie im `AndroidManifest.xml` registriert werden. Dort sind unter anderem die _Privileges_, _Permissions_ und eventuell Einschränkungen für den Aufruf definiert.
-
-```xml
-<activity android:name=".Sender" />
-<activity android:name=".Receiver" />
-```
+* _started_
+* _paused_
+* _active_
+* _stopped_
 
 Es gibt vier Typen von Android Komponenten:
 
@@ -80,9 +78,7 @@ Es gibt vier Typen von Android Komponenten:
 
 ### Acivity
 
-Eine Activity (`android.app.Activity`) entspricht normalerweise einem Screen und stellt UI-Widgets wie Labels und Buttons dar und reagiert auf Benutzereigaben.
-
-Eine App besteht in der Regel aus mehreren Activities, die auf einem Stack liegen.
+Eine Activity (`android.app.Activity`) entspricht normalerweise einem Screen und stellt UI-Widgets wie Labels und Buttons dar und reagiert auf Benutzereigaben. Eine App besteht in der Regel aus mehreren Activities, die auf einem Stack liegen.
 
 ```java
 public class DemoActivity extends Activity {
@@ -105,6 +101,43 @@ Broadcast Receiver (`android.content.BroadcastReceiver`) erhalten systemweite od
 ### Content Provider
 
 Content Provider (`android.content.ContentProvider`) bieten Standard-APIs zum Erstellen, Suchen, Löschen und Einfügen von Daten an. Zum Beispiel: Zugriff auf das Adressbuch, SMS, etc.
+
+## Android Manifest
+
+Alle Komponenten einer Applikation müssen dem System bekannt sein. In der Datei `AndroidManifest.xml` befinden sich Informationen zu den Komponenten mit *Privileges*, *Permissions* und Einschränkungen (*Intent-Filter*).
+
+```xml
+<activity android:name=".Sender" />
+<activity android:name=".Receiver" />
+```
+
+Die Datei beinhaltet grundsätzlich die statischen Eigenschaften einer Applikation wie Java-Package Name, Rechte und die Deklaration aller Komponenten.
+
+Beispiel `AndroidManifest.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.helloworld">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+```
 
 ## Lebenszyklus einer App
 
@@ -148,40 +181,6 @@ Das System regelt den Lebenszylus von Applikationen und kann diese selbständig 
 />
 ```
 
-## Android Manifest
-
-### Android Manifest
-
-Alle Komponenten einer Applikation müssen dem System bekannt sein. In der Datei `AndroidManifest.xml` befinden sich Informationen zu den Komponenten mit *Privileges*, *Permissions* und Einschränkungen (*Intent-Filter*).
-
-Die Datei beinhaltet grundsätzlich die statischen Eigenschaften einer Applikation wie Java-Package Name, Rechte und die Deklaration aller Komponenten.
-
-Beispiel `AndroidManifest.xml`:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.helloworld">
-
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-
-</manifest>
-```
-
 # Das Android Betriebssystem
 
 - **Linux Kernel**: Drivers (USB, WiFi, Audio, Display), Power Management
@@ -189,6 +188,17 @@ Beispiel `AndroidManifest.xml`:
 - **Native C/C++ Libraries** && **Android Runtime (ART)**
 - **Java API Frameworks**: Content Providers, Activity, Notification
 - **System Apps**: Calendar, Camera, Email
+
+## Andoid Stack
+
+1. *Linux Kernel*: OS, FS, Drivers
+2. *HAL (Hardware Abstraction Layer)*: Abstraktion von Kamera, Sensoren, ...
+3. *Native Libraries (C/C++)*
+4. *ART (Android Runtime)*
+5. *Android Framework*: Android Java API
+6. *Applications*
+
+![Android Stack](./img/stack.png)
 
 ## Security Konzept
 
